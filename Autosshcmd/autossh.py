@@ -27,8 +27,15 @@ def ssh_connect(node_ip, username, passwd, command):
 
 # 解析json格式信息
 def read_json(json_file):
-    json.load(json_file)
-    pass
+    with open(json_file) as json_dict:
+        node_dict = json.load(json_dict)
+        print(node_dict)
+        for node_msg in node_dict:
+            node_ip = node_msg["nodeip"]
+            passwd = node_msg["passwd"]
+            port = node_msg["port"]
+            print("执行机IP:%s\n密码:%s\nport:%s\n" % (node_ip, passwd, port))
+            # 用户名，密码 解析完成，调用ssh_connect 执行cmd命令并获取结果
 
 
 # 解析自定义格式信息
@@ -67,5 +74,7 @@ def execute_cmd(hostip, password, sshcmd):
 
 if __name__ == "__main__":
     configfile = "nodelist.cfg"
-    read_cfg(configfile)
+    jsonfile = "test.json"
+    # read_cfg(configfile)
+    read_json(jsonfile)
     print("测试")

@@ -1,5 +1,10 @@
-{
+[{
   "nodeip": "127.0.0.1",
   "passwd": "test123",
   "port": 22
-}
+},
+{
+  "nodeip": "127.0.0.2",
+  "passwd": "test999",
+  "port": 21
+}]

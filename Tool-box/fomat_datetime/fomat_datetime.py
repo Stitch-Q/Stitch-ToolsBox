@@ -74,7 +74,7 @@ def read_nodefile(file_path):
 
 
 if __name__ == "__main__":
-    filepath = './node.cfg'
+    filepath = 'node.cfg'
     recordlog()
     Node_ip, msg = read_nodefile(filepath)
     print("****%s执行结果: %s" % (Node_ip, msg))

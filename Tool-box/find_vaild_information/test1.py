@@ -41,7 +41,7 @@ def create_last_arr_list(keyword_list, file_path):
 
 
 # 将汇总完成的字典写入表格
-def load_data_in_excel(keyword__list, file__path):
+def load_data_in_excel(keyword__list, file__path, outputfilename):
     file__list = get_files_in_directory(file__path)
     workbook = openpyxl.Workbook()
     worksheet = workbook.active
@@ -61,7 +61,7 @@ def load_data_in_excel(keyword__list, file__path):
         line_num += 1
 
     # 写入完成，保存表格
-    workbook.save("test.xlsx")
+    workbook.save(outputfilename)
 
 
 # 解析目录下所有文件列表，并返回文件路径
@@ -87,6 +87,7 @@ if __name__ == "__main__":
     read_keyword_list = read_txt("keyword.txt")
     # 需要解析的文件目录
     path = "raw_file_dir"
+    output_filename = "测试文档输出.xlsx"
     file_list = get_files_in_directory(path)
     print(file_list)
-    load_data_in_excel(read_keyword_list, path)
+    load_data_in_excel(read_keyword_list, path, output_filename)

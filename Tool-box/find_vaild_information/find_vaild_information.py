@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+批量解析raw_file_dir目录下的doc文件，参照keyword.txt中配置的关键字，解析其值，将解析结果输出为excel文件
+"""
 import os
 import re
 import docx
@@ -41,7 +44,7 @@ def create_last_arr_list(keyword_list, file_path):
 
 
 # 将汇总完成的字典写入表格
-def load_data_in_excel(keyword__list, file__path, outputfilename):
+def load_data_in_excel(keyword__list, file__path, output__filename):
     file__list = get_files_in_directory(file__path)
     workbook = openpyxl.Workbook()
     worksheet = workbook.active
@@ -61,7 +64,7 @@ def load_data_in_excel(keyword__list, file__path, outputfilename):
         line_num += 1
 
     # 写入完成，保存表格
-    workbook.save(outputfilename)
+    workbook.save(output__filename)
 
 
 # 解析目录下所有文件列表，并返回文件路径

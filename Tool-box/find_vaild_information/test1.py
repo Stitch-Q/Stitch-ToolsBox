@@ -49,6 +49,7 @@ def load_data_in_excel(keyword__list, file__path):
 
     # 将字典的键作为表头写入第一行
     for file_path in file__list:
+        print("开始解析%s文件" % file_path)
         data = create_last_arr_list(keyword__list, file_path)
         header_row = 1
         for col_num, header_title in enumerate(data.keys(), start=1):
@@ -56,19 +57,21 @@ def load_data_in_excel(keyword__list, file__path):
         # 将字典的值写入表格
         data_row = line_num
         for col_num, cell_value in enumerate(data.values(), start=1):
-            worksheet.cell(row=data_row, colnum=col_num).value = cell_value
+            worksheet.cell(row=data_row, column=col_num).value = cell_value
         line_num += 1
 
     # 写入完成，保存表格
     workbook.save("test.xlsx")
 
+
 # 解析目录下所有文件列表，并返回文件路径
 def get_files_in_directory(directory):
-    file_list = []
+    raw_file_list = []
     for root, dirs, files in os.walk(directory):
         for file in files:
-            file_list.append(os.path.join(root, file))
-    return  file_list
+            raw_file_list.append(os.path.join(root, file))
+    return raw_file_list
+
 
 # 获取待查找关键字文件，解析其内容
 def read_txt(txt_path):
